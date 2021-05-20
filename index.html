@@ -6,12 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .small { font: italic 10px sans-serif; }
+        test {    pointer-events: none;}
+}
+        .small { font: italic 8px sans-serif; }
         .heavy { font: 30px sans-serif; fill: white;}
+        .on { filter: brightness(2);
+}
 
         /* Note that the color of the text is set with the    *
          * fill property, the color property is for HTML only */
-        .Rrrrr { font: italic 40px serif; fill: red; }
+        .cnt { font: italic 12px sans-serif; fill: red; }
       </style>
 
 </head>
@@ -23,33 +27,23 @@
         <path id="green" d="m137 199.9v39c52-5 94-47 100-99h-39c-5 30-30 54-61 60z" fill="#0f5"/>
         <path id="yellow" d="m137 11v39c30 5 55 29 61 60h39c-6-52-48-93-100-99z" fill="#eded00"/>
         <path id="red" d="m51 139h-39c6 51 46 92 97 99v-39c-29-6-52-29-58-59z" fill="#ff002b"/>
-        <path id="teal" d="m109 51v-39c-51 6-91 47-98 99h39c5-29 28-53 58-59z" fill="#00e1ff"/>
+        <path id="blue" d="m109 51v-39c-51 6-91 47-98 99h39c5-29 28-53 58-59z" fill="#00e1ff"/>
 
-        <path d="
-        m125 64
-        c-28 0-52 19-58 46
-        h117
-        c-6-26-30-46-58-46z"/>
-        <!-- yellow button -->
-        <circle cx="87" cy="155" stroke="black" stroke-width="1" fill="#eded00" r="6"/>
-        <!-- red button -->
-        <circle cx="125" cy="155" stroke="black" stroke-width="1" fill="#ff002b" r="6"/>
-        <!-- green button -->
-        <circle cx="163" cy="155" stroke="black" stroke-width="1" fill="#0f5" r="6"/>
-
-        <path d="m112 171h7v6h-7z" fill="#35cbff"/>
-        <path d="m120 171h7v6h-7z" fill="#3cacdd"/>
-        <path d="m127 171h7v6h-7zm-42h14v9h-14z" fill="#35cbff"/>
-                <!-- botton mblue slider -->
-        <path d="m142 129h14v9h-14z" fill="#3cacdd"/>
-        <path d="m156 129h14v9h-14z" fill="#35cbff"/>
-        <!-- black slider -->
-        <path d="m78 130h9v6h-9z" fill="#4d4d4d"/>
-        <path d="m87 130h9v6h-9z"/>
-        <path d="m97 130h9v6h-9z" fill="#4d4d4d"/>
-        <text x="125" y="145" text-anchor="middle" class="small">start</text>
+        <path d="m125 64 c-28 0-52 19-58 46 h117 c-6-26-30-46-58-46z"/>
         <text x="125" y="105" text-anchor="middle" class="heavy">simon</text>
 
+        <!-- yellow button -->
+        <circle cx="85" cy="145" stroke="black" stroke-width="1" fill="#eded00" r="6"/>
+        <!-- red button -->
+        <circle id="start" cx="125" cy="145" stroke="black" stroke-width="1" fill="#80002b" r="6"/>
+        <text x="125" y="135" text-anchor="middle" class="small">start</text>
+        <!-- green button -->
+        <circle id="strict" cx="165" cy="145" stroke="black" stroke-width="1" fill="#085" r="6"/>
+        <text x="165" y="135" text-anchor="middle" class="small">strict</text>
+        <!-- counter -->
+        <rect x="115" y="160", width="20" height="15" rx="3"/>
+        <text id="counter" x="125" y="171.5" text-anchor="middle" class="cnt">00</text>
         </svg>
 </body>
+<script src="new.js"></script>
 </html>

@@ -1,57 +1,50 @@
 const
-audioCtx = new (window.AudioContext || window.webkitAudioContext),
-freq = {green:391.995, red: 329.628, yellow: 261.626, blue: 195.998, lose:42}
-playSound = (button, duraction) => p = new Promise(r, () => {
+audioCtx = new window.AudioContext,
+freq = {green:391.995, red: 329.628, yellow: 261.626, blue: 195.998, lose:42},
+playTone = (button, duration) => new Promise(r => {
     const osc = audioCtx.createOscillator();
     osc.frequency.value = freq[button];
     osc.type = "square";
 
     osc.start();
-    window[button].classList.add('on')
+    window[button]?.classList.add('on')
     osc.connect(audioCtx.destination);
-    duration || osc.stop(audioCtx.currentTime+duration)
-    osc.onended(() => {
-        window[button].classList.remove('on')
-        r()
-    })
-    p.osc = osc
+    osc.stop(audioCtx.currentTime+duration)
+    osc.onended = () => {
+        window[button]?.classList.remove('on')
+        r(button)
+    }
+}),
+delay = n => new Promise( r => setTimeout(r, n*1000)),
+foo = () => new Promise(r=> {
+    setTimeout(r,3000)
+    document.addEventListener('click', r)
 }),
 
-resp = (inn) = new Promise((r), ()=>{
-    // on an 'click' clear Timeout, start tone and wait for mouse up
-    // resolve with the value of the button pressed
-    const f = event=> {
-        clearTimeout(timeOut) // cancel Timeout
-        const osc = playSound(tone).osc
-
-        document.addEventListener('onmouseup', event => {
-            osc.stop(0)
-            r(button)
-        },{once:true})
-    },
-    // In game time out: 3 seconds (after which the losing tone is played)
-    timeOut = setTimeout(() => {
-        document.removeEventListener('onmousedown', f)
-        r()
-    }, 3)
-    document.addEventListener('onmousedown', f)
-}),
 playGame = async () => {
-    const duration = tones.length <6 ?.42: tones.length < 14 ?.32 :.22
-    tones=[]
-    while(tones.length < xxx) {
-        tones.push()
-        tones.forEach(tone => await playTone(tone, duration()))
-        Delay(.2)
+    const
+    tones=[],
+    duration = () => tones.length <6 ?.42: tones.length < 14 ?.32 :.22
+trial:
+    while(tones.length < 5) {
+        counter.textContent = tones.length
+
         for(const tone of tones){
-            if( tone != await resp()) {
-                await playTone(lose, 1.5)
-                if( strict )break game;
-                break ?
+            await playTone(tone, duration())
+            await delay(.2)
+        }
+        for(const tone of tones){
+            if( tone == (await foo())?.target.id) {
+                await playTone(tone, .22)
+            } else {
+                await playTone('lose', 1.5)
+                if( false  ) tones.length = 0;
+                continue trial
             }
         }
         // The time between the player finishing a sequence and the game playing the sequence again (with an extra colour) is 0.8 seconds.
-        delay(.8)
+        await delay(.8)
+        tones.push(['red','green','blue','yellow'][Math.random()*4|0])
     }
     // If the required sequence length for the skill level
     // has been reached  play a victory tone of six beeps
@@ -62,12 +55,19 @@ playGame = async () => {
     // The victory tone is played 0.8 seconds after the last colour
     // of the sequence has been pressed and released.
     const vt = tones[tones.length-1]
-    playTone(vt, .02)
-    for(const i=0; i < 5; i++) {
+    await playTone(vt, .02)
+    for(let i=0; i < 5; i++) {
         await delay(.02)
         await playTone(vt, .07)
     }
 }
+start.addEventListener('click', ()=> {
+    start.classList.add('on')
+    playGame()
+})
+strict.addEventListener('click', ()=> {
+    strict.classList.add('on')
+})
 
 
 
