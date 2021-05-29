@@ -18,7 +18,7 @@ playTone = (button, duration) => new Promise(r => {
 delay = n => new Promise( r => setTimeout(r, n*1000)),
 foo = () => new Promise(r=> {
     setTimeout(r,3000)
-    document.addEventListener('click', r)
+    document.addEventListener('click', r, {once:true})
 }),
 
 playGame = async () => {
